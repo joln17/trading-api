@@ -54,7 +54,7 @@ const authModel = {
                 query = `INSERT INTO accounts (email, password, name, birthdate)
                          VALUES (?, ?, ?, ?)`;
 
-                db.run(query, email, hash, name, birthdate, (err) => {
+                db.run(query, email, hash, name, birthdate, function (err) {
                     if (err) {
                         return res.status(500).json({
                             error: {
@@ -64,7 +64,7 @@ const authModel = {
                         });
                     }
 
-                    const payload = { account_id: this.lastID, email: email };
+                    const payload = { accountID: this.lastID, email: email };
                     const token = jwt.sign(payload, secret, { expiresIn: '1h' });
 
                     return res.status(201).json({
@@ -121,7 +121,7 @@ const authModel = {
                     });
                 }
 
-                const payload = { account_id: row.account_id, email: email };
+                const payload = { accountID: row.account_id, email: email };
                 const token = jwt.sign(payload, secret, { expiresIn: '1h' });
 
                 return res.status(200).json({
@@ -150,8 +150,8 @@ const authModel = {
                 }
 
                 req.user = {
-                    email: decoded.email,
-                    admin: decoded.admin
+                    accountID: decoded.accountID,
+                    email: decoded.email
                 };
 
                 next();
