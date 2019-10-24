@@ -6,8 +6,8 @@ const morgan = require('morgan');
 const app = express();
 const port = 8333;
 
-const index = require('./routes/index');
 const auth = require('./routes/auth');
+const account = require('./routes/account');
 
 require('dotenv').config();
 
@@ -25,8 +25,8 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // Add routes
-app.use('/', index);
 app.use('/auth', auth);
+app.use('/account', account);
 
 
 // Add routes for 404 and error handling
