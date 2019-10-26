@@ -6,7 +6,7 @@
   "scripts": {
     "pretest": "bash db/reset_test_db.bash",
     "test": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000 test/**/*.js",
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "production": "NODE_ENV='production' node app.js"
   },
   "keywords": [],
