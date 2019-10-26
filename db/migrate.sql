@@ -14,11 +14,11 @@ CREATE TABLE IF NOT EXISTS account_holdings (
     price NUMERIC
 );
 
-CREATE TABLE IF NOT EXISTS trade_log (
-    account_id INTEGER NOT NULL,
-    time DATETIME NOT NULL,
-    action VARCHAR(12) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    quantity NUMERIC NOT NULL,
-    price NUMERIC
-);
+--CREATE TABLE IF NOT EXISTS trade_log (
+--    account_id INTEGER NOT NULL,
+--    time DATETIME NOT NULL,
+--    action VARCHAR(12) NOT NULL,
+--    name VARCHAR(255) NOT NULL,
+--    quantity NUMERIC NOT NULL,
+--    price NUMERIC
+--);
