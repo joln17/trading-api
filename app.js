@@ -4,7 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const app = express();
-const port = 8333;
+const port = 8334;
 
 const auth = require('./routes/auth');
 const account = require('./routes/account');
