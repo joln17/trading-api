@@ -25,8 +25,8 @@ const accountModel = {
 
     makeDeposit: function (req, res) {
         const accountID = req.user.accountID;
-        const quantity = req.body.quantity;
-        let query;
+        const quantity = +req.body.quantity;
+        let newQuantity, query;
 
         query = `SELECT * FROM account_holdings
                  WHERE account_id = ? AND name = ?`;
@@ -65,7 +65,7 @@ const accountModel = {
                 // Previous deposit exists
                 query = `UPDATE account_holdings SET quantity = ?
                          WHERE account_id = ? AND name = ?`;
-                const newQuantity = +quantity + row.quantity;
+                newQuantity = quantity + row.quantity;
 
                 db.run(query, newQuantity, accountID, 'Saldo', (err) => {
                     if (err) {
