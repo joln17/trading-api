@@ -8,6 +8,7 @@ const port = 8333;
 
 const auth = require('./routes/auth');
 const account = require('./routes/account');
+const trade = require('./routes/trade');
 
 require('dotenv').config();
 
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 // Add routes
 app.use('/auth', auth);
 app.use('/account', account);
+app.use('/trade', trade);
 
 
 // Add routes for 404 and error handling
