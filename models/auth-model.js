@@ -142,7 +142,7 @@ const authModel = {
             jwt.verify(token, secret, (err, decoded) => {
                 if (err) {
                     return res.status(500).json({
-                        errors: {
+                        error: {
                             status: 500,
                             message: "Failed authentication"
                         }
@@ -159,7 +159,7 @@ const authModel = {
             });
         } else {
             return res.status(401).json({
-                errors: {
+                error: {
                     status: 401,
                     message: "No token provided"
                 }
