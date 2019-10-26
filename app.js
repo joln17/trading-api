@@ -10,9 +10,14 @@ const auth = require('./routes/auth');
 const account = require('./routes/account');
 const trade = require('./routes/trade');
 
+const corsOptions = {
+    origin: 'https://trading.joln17.me',
+    optionsSuccessStatus: 200
+};
+
 require('dotenv').config();
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.disable('x-powered-by');
 
