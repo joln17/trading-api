@@ -156,33 +156,16 @@ const tradeModel = {
                             message: "Insufficient funds"
                         }
                     });
-                } else if (row.quantity - quantity === 0) {
-                    query = `DELETE FROM account_holdings
-                             WHERE account_id = ? AND name = ?`;
-
-                    db.run(query, accountID, name, (err) => {
-                        if (err) {
-                            db.run("ROLLBACK;");
-                            return res.status(500).json({
-                                error: {
-                                    status: 500,
-                                    message: "Database error"
-                                }
-                            });
-                        }
-
-                        db.run('COMMIT;');
-                        return res.status(200).json({
-                            data: {
-                                status: 200,
-                                message: "Successful transaction"
-                            }
-                        });
-                    });
                 } else {
                     // Sufficient funds, update account
-                    query = `UPDATE account_holdings SET quantity = ?
-                             WHERE account_id = ? AND name = ?`;
+                    if (row.quantity - quantity === 0) {
+                        query = `DELETE FROM account_holdings
+                                 WHERE quantity = ? AND account_id = ? AND name = ?`;
+                        newQuantity = quantity;
+                    } else {
+                        query = `UPDATE account_holdings SET quantity = ?
+                                 WHERE account_id = ? AND name = ?`;
+                    }
 
                     db.run(query, newQuantity, accountID, name, (err) => {
                         if (err) {
